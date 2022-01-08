@@ -34,7 +34,7 @@
           <span> &nbsp;&nbsp; 26 Yorum</span>
         </div>
         <div class="attr_container">
-          <div class="attr_name">{{ attrColorList.name }} &nbsp;&nbsp;&nbsp;&nbsp;:</div>
+          <div class="attr_name">{{ attrColorList.name }} :</div>
           <div class="attr_values">
             <button
               @click="checkVariant(item)"
@@ -47,7 +47,7 @@
           </div>
         </div>
         <div class="attr_container">
-          <div class="attr_name">{{ attrSizeList.name }} &nbsp;&nbsp;:</div>
+          <div class="attr_name">{{ attrSizeList.name }} :</div>
           <div class="attr_values">
             <!-- <button v-for="item in attrSizeList.values" :key="item.title">
                 {{ item }}
@@ -100,7 +100,10 @@
         </div>
         <div class="attr_container barem_area">
           <div class="barem_list">
-            <div class="attr_name">Toptan Fiyat (Adet):</div>
+            <div class="attr_name">
+              Toptan Fiyat <br />
+              (Adet):
+            </div>
             <div
               class="barem_container"
               v-for="item in baremScale"
@@ -132,7 +135,7 @@
         <div class="attr_container add_btn">
           <div style="margin-top: -1.5rem">
             <img src="../assets/shipping.png" class="shipping" />
-            <span style="margin: auto; font-size: 18px">Kargo ücreti: Ücretsiz</span>
+            <span class="shipping_inf">Kargo ücreti: Ücretsiz</span>
           </div>
           <button @click="addBasket()" id="add_btn">SEPETE EKLE</button>
         </div>
@@ -460,6 +463,10 @@ img:hover {
   height: 2rem;
   margin-bottom: -0.5rem;
 }
+.shipping_inf {
+  margin: auto; 
+  font-size: 18px;
+}
 #add_btn {
   background-color: #3eb595;
   border: none;
@@ -505,5 +512,190 @@ input[type="number"]:focus {
   border: 2px solid #e9f2ec;
   outline: none;
   transform: scale(1.02);
+}
+.total_area {
+  margin-top: 0;
+  margin-bottom: 0rem;
+}
+@media screen and (min-width: 1440px) {
+  .container {
+    width: calc(90%);
+    height: calc(800px);
+  }
+  img {
+    width: 25rem;
+    height: 25rem;
+  }
+  .thumbnail img {
+    width: 4rem;
+    height: 4rem;
+  }
+  .title {
+    font-size: 38px;
+  }
+  .star-area {
+    margin-bottom: 0.8rem;
+  }
+  .barem_area .attr_name {
+    margin-right: 0;
+  }
+  .total_area {
+    margin-top: -25px;
+    margin-bottom: 0.5rem;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    width: calc(90%);
+    height: calc(800px);
+  }
+  .barem_area .attr_name {
+    margin-right: 0;
+    margin-left: 1.5rem;
+  }
+  .add_btn {
+    margin-left: 0;
+  }
+  .total_area {
+    margin-top: -25px;
+    margin-bottom: 0.5rem;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .container {
+    width: calc(80%);
+    height: calc(800px);
+  }
+  .title {
+    font-size: 34px;
+  }
+  img {
+    width: 30rem;
+    height: 30rem;
+  }
+  .thumbnail img {
+    width: 3rem;
+    height: 3rem;
+  }
+  .attr_name {
+    font-size: 19px;
+  }
+  .attr_values button {
+    margin-right: 0.5rem;
+    text-align: center;
+  }
+  .barem_list .attr_name {
+    font-size: 15px;
+  }
+  .barem_container span {
+    font-size: 16px;
+  }
+  .add_btn {
+    margin-left: 7rem;
+  }
+  .barem_list span p {
+    font-size: 16px;
+  }
+  .total_area p {
+    font-size: 16px;
+  }
+  .total_area {
+    margin-top: -25px;
+    margin-bottom: 0.5rem;
+  }
+  #total {
+    font-size: 22px;
+  }
+  .total_area {
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 900px) {
+  .row {
+    flex-direction: column;
+  }
+  .column {
+    width: calc(100%);
+  }
+  .add_btn {
+    margin-top: 1rem;
+  }
+  #total {
+    font-size: 20px;
+  }
+  .total_area {
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 600px) {
+  .row {
+    flex-direction: column;
+  }
+  .column {
+    width: calc(100%);
+  }
+  .attr_name {
+    font-size: 14px;
+  }
+  .attr_values button {
+    padding: 0.3rem;
+    width: 4rem;
+  }
+  #total {
+    font-size: 18px;
+  }
+  .total_area {
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 490px) {
+.container {
+  background-color: red;
+}
+  .row {
+    flex-direction: column;
+  }
+  .column {
+    width: calc(100%);
+  }
+  .attr_name {
+    font-size: 14px;
+  }
+  .attr_values button {
+    padding: 0.3rem;
+    width: 4rem;
+  }
+  .attr_values {
+    margin-left: 1rem;
+  }
+  .barem_list .attr_name {
+    font-size: 12px;
+  }
+  .barem_container span {
+    font-size: 12px;
+  }
+  .barem_container p {
+    font-size: 9px;
+  }
+  .shipping_inf {
+    font-size: 10px;
+  }
+  .shipping {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  #add_btn {
+    padding: 9px 14px;
+    font-size: 16px;
+  }
+  .add_btn {
+    margin-left: 2rem;
+  }
+  #total {
+    font-size: 16px;
+  }
+  .total_area {
+    margin-top: 0;
+  }
 }
 </style>
