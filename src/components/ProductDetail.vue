@@ -33,6 +33,9 @@
 
           <span> &nbsp;&nbsp; 26 Yorum</span>
         </div>
+        <div class="star_area">
+          <span>10 TL / Birim Fiyatı</span>
+        </div>
         <div class="attr_container">
           <div class="attr_name">{{ attrColorList.name }} :</div>
           <div class="attr_values">
@@ -293,7 +296,7 @@ export default {
         document.getElementById("7.13").style.backgroundColor = "#3EB595";
       } else {
         this.count = this.baremValue;
-        totalID.innerHTML = this.count + " TL";
+        totalID.innerHTML = this.count * 10 + " TL";
         this.writeBarem = "No Barem";
         document.getElementById("9.5").style.backgroundColor = "#f7f7f7";
         document.getElementById("8.46").style.backgroundColor = "#f7f7f7";
@@ -464,7 +467,7 @@ img:hover {
   margin-bottom: -0.5rem;
 }
 .shipping_inf {
-  margin: auto; 
+  margin: auto;
   font-size: 18px;
 }
 #add_btn {
@@ -498,7 +501,7 @@ input[type="number"] {
 }
 
 input[type="number"] {
-  width: 15%;
+  width: 30%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -649,9 +652,6 @@ input[type="number"]:focus {
   }
 }
 @media screen and (max-width: 490px) {
-.container {
-  background-color: red;
-}
   .row {
     flex-direction: column;
   }
