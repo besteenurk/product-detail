@@ -131,7 +131,7 @@
         </div>
         <div class="attr_container">
           <div class="barem_list total_area">
-            <p>Toplam :</p>
+            <p>Toplam:</p>
             <h1 id="total"></h1>
           </div>
         </div>
@@ -180,7 +180,6 @@ export default {
     this.attrSizeList.name = this.attr[0][1].name;
     this.attrSizeList.values = this.attr[0][1].values;
     this.baremScale = dataL.baremList;
-    console.log(this.baremScale);
 
     this.selectedImg = "https://n11scdn.akamaized.net/a1/500/03/59/50/58/43001440.jpg";
 
@@ -253,15 +252,14 @@ export default {
     getImgFromColor(e) {
       document.getElementById("allImg").style.display = "none";
       document.getElementById("selImg").style.display = "block";
-      const b = this.myData.productVariants.filter(
+      const product = this.myData.productVariants.filter(
         (item) =>
           item.attributes[1].value === this.selectedColor &&
           item.attributes[0].value === e.target.value
       );
       this.colorsOfImg = [];
-      console.log(b);
-      for (let i = 0; i < b.length; i++) {
-        const element = b[i];
+      for (let i = 0; i < product.length; i++) {
+        const element = product[i];
         this.sizeId = element.id;
         element.images.forEach((element) => {
           this.colorsOfImg.push(element);
@@ -274,21 +272,21 @@ export default {
       var totalID = document.getElementById("total");
 
       if (120 <= this.baremValue && this.baremValue <= 599) {
-        this.count = this.baremValue * 9.5;
+        this.count = parseFloat(this.baremValue * 9.5).toFixed(2);
         totalID.innerHTML = this.count + " TL";
         this.writeBarem = this.baremScale[0];
         document.getElementById("9.5").style.backgroundColor = "#3EB595";
         document.getElementById("7.13").style.backgroundColor = "#f7f7f7";
         document.getElementById("8.46").style.backgroundColor = "#f7f7f7";
       } else if (600 <= this.baremValue && this.baremValue <= 799) {
-        this.count = this.baremValue * 8.46;
+        this.count = parseFloat(this.baremValue * 8.46).toFixed(2);
         totalID.innerHTML = this.count + " TL";
         this.writeBarem = this.baremScale[1];
         document.getElementById("9.5").style.backgroundColor = "#f7f7f7";
         document.getElementById("7.13").style.backgroundColor = "#f7f7f7";
         document.getElementById("8.46").style.backgroundColor = "#3EB595";
       } else if (800 <= this.baremValue && this.baremValue <= 2147483647) {
-        this.count = this.baremValue * 7.13;
+        this.count = parseFloat(this.baremValue * 7.13).toFixed(2);
         totalID.innerHTML = this.count + " TL";
         this.writeBarem = this.baremScale[2];
         document.getElementById("9.5").style.backgroundColor = "#f7f7f7";
@@ -307,395 +305,18 @@ export default {
     addBasket() {
       if (this.writeBarem != "No Barem") {
         console.log(
-          this.writeBarem.minimumQuantity + " " + this.writeBarem.maximumQuantity
+          "Barem Area: ",
+          this.writeBarem.minimumQuantity + " - " + this.writeBarem.maximumQuantity
         );
       } else {
-        console.log(this.writeBarem);
+        console.log("Barem Area: ", this.writeBarem);
       }
-      console.log(this.sizeId);
+      console.log("Product ID: ", this.sizeId);
     },
   },
 };
 </script>
 
-<style scoped>
-.container {
-  width: calc(78%);
-  height: calc(800px);
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  align-items: flex-start;
-  margin: auto;
-}
-.row {
-  width: calc(100%);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-content: center;
-}
-.column {
-  width: calc(50%);
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-.column:first-child {
-  align-items: center;
-}
-.column:nth-child(2) {
-  text-align: left;
-}
-.thumbnail {
-  margin-top: 30px;
-  height: 170px;
-}
-.star_area {
-  margin-bottom: 1rem;
-}
-.star {
-  transform: scale(1) !important;
-  width: 1rem;
-  height: 1rem;
-}
-img {
-  width: 30rem;
-  height: 30rem;
-  transform: scale(0.9);
-}
-img:hover {
-  transform: scale(1.1);
-}
-.thumbnail img {
-  width: 5rem;
-  height: 5rem;
-}
-.title {
-  font-size: 40px;
-  line-height: normal;
-}
-.attr_container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 22px;
-  margin-top: 10px;
-}
-.attr_values {
-  margin-left: 2rem;
-}
-.attr_values button {
-  padding: 1rem;
-  margin-right: 1rem;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  outline: none;
-  width: 5rem;
-}
-.attr_values button:active {
-  background-color: rgba(128, 128, 128, 0.123);
-}
-.barem_area {
-  background-color: #f7f7f7;
-  padding-top: 1rem;
-  padding-right: 1rem;
-  border: none;
-  border-radius: 20px 20px 0 0;
-}
-.count_area {
-  background-color: #f7f7f7;
-  padding-top: 1rem;
-  padding-right: 1rem;
-  border: none;
-  border-radius: 0 0 20px 20px;
-  margin-top: 0rem;
-}
-.count_area span {
-  margin-left: 2rem;
-}
-.barem_area .attr_name {
-  margin: 2rem;
-}
-.barem_list {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: 100%;
-}
-.barem_container {
-  text-align: center;
-  padding: 4px;
-  margin-bottom: 1rem;
-  margin-left: 1rem;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  border-radius: 20px;
-  padding-top: 1rem;
-}
-.barem_container p {
-  margin-top: 10px;
-  text-align: center;
-  font-size: 18px;
-}
-.barem_container span {
-  width: 8rem;
-  font-size: 22px;
-}
-.total_area {
-  margin: 2rem;
-}
-.total_area p {
-  margin: auto 0;
-  margin-left: 0;
-  font-size: 28px;
-  font-weight: 700;
-}
-.total_area h1 {
-  margin-left: 2rem;
-}
-.add_btn {
-  margin: 2rem;
-  margin-left: -6rem;
-  margin-top: -1rem;
-  display: flex;
-  flex-direction: column;
-}
-.shipping {
-  width: 2rem;
-  height: 2rem;
-  margin-bottom: -0.5rem;
-}
-.shipping_inf {
-  margin: auto;
-  font-size: 18px;
-}
-#add_btn {
-  background-color: #3eb595;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 22px;
-  cursor: pointer;
-  border-radius: 8px;
-}
-button {
-  transform: scale(0.95);
-}
-button:focus,
-button:hover {
-  transform: scale(1.05);
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-input[type="number"] {
-  width: 30%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 2px solid #e9f2ec;
-  border-radius: 4px;
-  transform: scale(0.98);
-  border-radius: 20px;
-  margin-left: 10px;
-}
-input[type="number"]:focus {
-  border: 2px solid #e9f2ec;
-  outline: none;
-  transform: scale(1.02);
-}
-.total_area {
-  margin-top: 0;
-  margin-bottom: 0rem;
-}
-@media screen and (min-width: 1440px) {
-  .container {
-    width: calc(90%);
-    height: calc(800px);
-  }
-  img {
-    width: 25rem;
-    height: 25rem;
-  }
-  .thumbnail img {
-    width: 4rem;
-    height: 4rem;
-  }
-  .title {
-    font-size: 38px;
-  }
-  .star-area {
-    margin-bottom: 0.8rem;
-  }
-  .barem_area .attr_name {
-    margin-right: 0;
-  }
-  .total_area {
-    margin-top: -25px;
-    margin-bottom: 0.5rem;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .container {
-    width: calc(90%);
-    height: calc(800px);
-  }
-  .barem_area .attr_name {
-    margin-right: 0;
-    margin-left: 1.5rem;
-  }
-  .add_btn {
-    margin-left: 0;
-  }
-  .total_area {
-    margin-top: -25px;
-    margin-bottom: 0.5rem;
-  }
-}
-@media screen and (max-width: 1024px) {
-  .container {
-    width: calc(80%);
-    height: calc(800px);
-  }
-  .title {
-    font-size: 34px;
-  }
-  img {
-    width: 30rem;
-    height: 30rem;
-  }
-  .thumbnail img {
-    width: 3rem;
-    height: 3rem;
-  }
-  .attr_name {
-    font-size: 19px;
-  }
-  .attr_values button {
-    margin-right: 0.5rem;
-    text-align: center;
-  }
-  .barem_list .attr_name {
-    font-size: 15px;
-  }
-  .barem_container span {
-    font-size: 16px;
-  }
-  .add_btn {
-    margin-left: 7rem;
-  }
-  .barem_list span p {
-    font-size: 16px;
-  }
-  .total_area p {
-    font-size: 16px;
-  }
-  .total_area {
-    margin-top: -25px;
-    margin-bottom: 0.5rem;
-  }
-  #total {
-    font-size: 22px;
-  }
-  .total_area {
-    margin-top: 0;
-  }
-}
-@media screen and (max-width: 900px) {
-  .row {
-    flex-direction: column;
-  }
-  .column {
-    width: calc(100%);
-  }
-  .add_btn {
-    margin-top: 1rem;
-  }
-  #total {
-    font-size: 20px;
-  }
-  .total_area {
-    margin-top: 0;
-  }
-}
-@media screen and (max-width: 600px) {
-  .row {
-    flex-direction: column;
-  }
-  .column {
-    width: calc(100%);
-  }
-  .attr_name {
-    font-size: 14px;
-  }
-  .attr_values button {
-    padding: 0.3rem;
-    width: 4rem;
-  }
-  #total {
-    font-size: 18px;
-  }
-  .total_area {
-    margin-top: 0;
-  }
-}
-@media screen and (max-width: 490px) {
-  .row {
-    flex-direction: column;
-  }
-  .column {
-    width: calc(100%);
-  }
-  .attr_name {
-    font-size: 14px;
-  }
-  .attr_values button {
-    padding: 0.3rem;
-    width: 4rem;
-  }
-  .attr_values {
-    margin-left: 1rem;
-  }
-  .barem_list .attr_name {
-    font-size: 12px;
-  }
-  .barem_container span {
-    font-size: 12px;
-  }
-  .barem_container p {
-    font-size: 9px;
-  }
-  .shipping_inf {
-    font-size: 10px;
-  }
-  .shipping {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-  #add_btn {
-    padding: 9px 14px;
-    font-size: 16px;
-  }
-  .add_btn {
-    margin-left: 2rem;
-  }
-  #total {
-    font-size: 16px;
-  }
-  .total_area {
-    margin-top: 0;
-  }
-}
+<style>
+@import "./../styles/style.css";
 </style>
