@@ -2,6 +2,9 @@
 # product-detail
 
 ![ProductDetail](src/assets/product-detail.png)
+
+https://product-detail-4d09f.web.app/
+
 ## Project setup
 ```
 npm install
